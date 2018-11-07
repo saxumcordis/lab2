@@ -58,9 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="IWANNADIEMOTHERFUCKERPROGAGOVNOEBANOE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentsRepository.cs" />
   </ItemGroup>

@@ -12,7 +12,8 @@ namespace lab_work_2
     {
         static void Main(string[] args)
         {
-            StudentsRepository.delete(2);
+            Console.WriteLine(new Repository<Student>().get(3).name);
+            Console.ReadKey();
         }
 
 

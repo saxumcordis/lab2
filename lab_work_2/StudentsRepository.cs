@@ -19,14 +19,14 @@ namespace lab_work_2
         private static string studentToString(Student student)
         {
             return "'" + student.name + "', '" + student.birth + "', '" + student.university + "', '"
-+ student.classString + "', " + student.level + ", " + student.gpa;
++ student.@class + "', " + student.level + ", " + student.gpa;
         }
         public static void update(Student student)
         {
             if (student.id != null && student.id > 0)
             {
                 DB.execute("UPDATE students SET name = '" + student.name + "', birth = '" + student.birth
-+ "', university = '" + student.university + "', class = '" + student.classString
++ "', university = '" + student.university + "', class = '" + student.@class
 + "', level = " + student.level + ", gpa = " + student.gpa + " WHERE id = " + student.id);
             }
         }
