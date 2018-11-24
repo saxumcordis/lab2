@@ -16,7 +16,7 @@ namespace lab_work_2
             );
 
         }
-        private static string makemecrybaby(T entity)
+        private static string studentToString(T entity)
         {
             var result = "";
             foreach (var property in typeof(T).GetProperties())
@@ -35,12 +35,12 @@ namespace lab_work_2
         {
             if (entity.id > 0)
                 DB.execute(
-                "UPDATE " + typeof(T).Name.ToLower() + "s SET " + makemecrybaby(entity) + " WHERE id = " + entity.id);
+                "UPDATE " + typeof(T).Name.ToLower() + "s SET " + studentToString(entity) + " WHERE id = " + entity.id);
         }
         public void add(T entity)
         {
             DB.execute(
-            "INSERT INTO " + typeof(T).Name.ToLower() + "s SET " + makemecrybaby(entity));
+            "INSERT INTO " + typeof(T).Name.ToLower() + "s SET " + studentToString(entity));
         }
         public T get(int id)
         {

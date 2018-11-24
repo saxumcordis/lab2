@@ -46,7 +46,38 @@ namespace lab_work_2
             }
         }
         private static void update()
-        {Console.WriteLine("Enter t  }
+        { Console.WriteLine("Enter student's id");
+            var id = Int32.Parse(Console.ReadLine());
+            var student = repository.get(id);
+            Console.WriteLine("Choose the field: \n1. Name \n2. Birth \n3. University \n4. Class \n5. Level \n6. GPA");
+            int choice = Int32.Parse(Console.ReadLine());
+            var value = getFieldFromConsole(fieldsArr[choice - 1]);
+            switch (choice)
+            {
+                case 1:
+                    student.name = (string)value;
+                    break;
+                case 2:
+                    student.birth = (string)value;
+                    break;
+                case 3:
+                    student.university = (string)value;
+                    break;
+                case 4:
+                    student.@class = (string)value;
+                    break;
+                case 5:
+                    student.level = Int32.Parse((string)value);
+                    break;
+                case 6:
+                    student.gpa = float.Parse((string)value);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+            repository.update(student);
+        }
+            
 
         static void Main(string[] args)
         {
