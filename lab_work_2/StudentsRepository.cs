@@ -8,9 +8,10 @@ namespace lab_work_2
 {
     public class StudentsRepository
     {
-        public static void save(Student student)
+        
+        public static void add(Student student)
         {
-            DB.execute("INSERT INTO students(name, birth, university, class, level, gpa) VALUES(" + studentToString(student) + ")");
+            DB.execute("INSERT INTO students(name, birth, university, class, level, gpa)     VALUES(" + studentToString(student) + ")");
         }
        
         

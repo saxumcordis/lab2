@@ -31,13 +31,13 @@ namespace lab_work_2
         }
         public override Entity fromRepository(object[] arr)
         {
-            Int32.Parse(arr[0].ToString());
-            arr[1].ToString();
-            arr[2].ToString();
-            arr[3].ToString();
-            arr[4].ToString();
-            Int32.Parse(arr[5].ToString());
-            float.Parse(arr[6].ToString());
+            id = Int32.Parse(arr[0].ToString());
+            name = arr[1].ToString();
+            birth = arr[2].ToString();
+            university = arr[3].ToString();
+            @class = arr[4].ToString();
+            level = Int32.Parse(arr[5].ToString());
+            gpa = float.Parse(arr[6].ToString());
             return this;
         }
         public bool Equals(Student other)

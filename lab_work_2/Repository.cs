@@ -37,24 +37,34 @@ namespace lab_work_2
                 DB.execute(
                 "UPDATE " + typeof(T).Name.ToLower() + "s SET " + makemecrybaby(entity) + " WHERE id = " + entity.id);
         }
-        public void save(T entity)
+        public void add(T entity)
         {
             DB.execute(
             "INSERT INTO " + typeof(T).Name.ToLower() + "s SET " + makemecrybaby(entity));
         }
-        public T get(int id) {
+        public T get(int id)
+        {
             if (id > 0)
             {
                 var list = DB.execute(
                  "SELECT * FROM " + typeof(T).Name.ToLower() + "s WHERE id =" + id);
                 if (list.Count > 0)
-                    return (T) new T().fromRepository(list[0]);
+                    return (T)new T().fromRepository(list[0]);
                 else
                     return null;
             }
             else
                 return null;
         }
+        public List<T> all(string orderBy = "id", Order order = Order.ASC)
+        {
+            var result = new List<T>();
+            foreach (var entity in DB.execute("SELECT * FROM " + typeof(T).Name.ToLower()
+            + "s ORDER BY " + orderBy + " " + order))
+                result.Add((T)new T().fromRepository(entity));
+            return result;
+        }
+
     }
 }
 
