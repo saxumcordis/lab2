@@ -64,7 +64,62 @@ namespace lab_work_2
                 result.Add((T)new T().fromRepository(entity));
             return result;
         }
-
+        public List<T> getByName(string name)
+        {      
+            var list = DB.execute(
+"SELECT * FROM " + typeof(T).Name.ToLower() + "s WHERE name =" + name +"");
+                if (list.Count > 0)
+                {
+                var result = new List<T>();
+                foreach (var student in list)
+                    result.Add((T)new T().fromRepository(student));
+                return result;
+            }
+                else
+                    return null;
+            
+        }
+            
+            public List<T> getByBirth(string birth) {
+            var list = DB.execute(
+"SELECT * FROM " + typeof(T).Name.ToLower() + "s WHERE birth =" + birth + "");
+            if (list.Count > 0)
+            {
+                var result = new List<T>();
+                foreach (var student in list)
+                    result.Add((T)new T().fromRepository(student));
+                return result;
+            }
+            else
+                return null;
+        }
+        public List<T> getMaxGPA()
+        {
+            var list = DB.execute("SELECT MAX(gpa) FROM students");
+            if (list.Count > 0)
+            {
+                var result = new List<T>();
+                foreach (var student in list)
+                    result.Add((T)new T().fromRepository(student));
+                return result;
+            }
+            else
+                return null;
+        }
+        public List<T> getMinGPA()
+        {
+            var list = DB.execute("SELECT MIN(gpa) FROM students");
+            if (list.Count > 0)
+            {
+                var result = new List<T>();
+                foreach (var student in list)
+                    result.Add((T)new T().fromRepository(student));
+                return result;
+            }
+            else
+                return null;
+        }
     }
 }
 
+    

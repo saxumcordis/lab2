@@ -18,7 +18,7 @@ namespace lab_work_2
                 new KeyValuePair<string, string>("University: ", "^.{1,256}$"),
                 new KeyValuePair<string, string>("Class: ", "^.{1,32}$"),
                 new KeyValuePair<string, string>("Level: ", "^\\d{1,11}$"),
-                new KeyValuePair<string, string>("GPA: ", "^\\d\\.?\\d$")
+                new KeyValuePair<string, string>("GPA: ", "^((100)|(\\d{1,2}([.|,]\\d)?))$")
 };
         private static object getFieldFromConsole(KeyValuePair<string, string> fieldArr)
         {
@@ -30,7 +30,7 @@ namespace lab_work_2
             return getFieldFromConsole(fieldArr);
         }
         private static void add()
-        {   
+        {
             try
             {
                 var arr = new object[7];
@@ -77,8 +77,42 @@ namespace lab_work_2
             }
             repository.update(student);
         }
-            
 
+        public static void delete()
+        {
+            Console.WriteLine("Enter the ID");
+            repository.delete(Int32.Parse(Console.ReadLine()));
+        }
+        public static void getByName()
+        {
+            repository.getByName((string)getFieldFromConsole(fieldsArr[0]));
+        }
+        public static void getByBirth()
+        {
+            repository.getByName((string)getFieldFromConsole(fieldsArr[1]));
+        }
+        public static void sort()
+        {
+            Console.WriteLine("Choose the type of sort: \n1) Ascending \n2) Descending");
+            var sortType = Int32.Parse(Console.ReadLine()) == 1 ? Order.ASC : Order.DESC;
+            Console.WriteLine("Choose the field: \n1) name \n2) birth");
+            var field = Int32.Parse(Console.ReadLine());
+            switch (field) {
+                case 1:                  
+                    repository.all("name", sortType);
+                    break;
+                case 2:
+                    repository.all("birth", sortType);
+                    break;
+            }                    
+            }
+        public static void getExtremeGPA()
+        {
+            repository.getMaxGPA();
+            repository.getMaxGPA();
+        }
+        
+    
         static void Main(string[] args)
         {
             Console.WriteLine("You are working with this DB:");
@@ -88,7 +122,7 @@ namespace lab_work_2
                 print(repository.all());
                 while (true)
                 {
-                    Console.WriteLine("Select: \n1) add \n2) update \n3) delete ");        
+                    Console.WriteLine("Select: \n1) add \n2) update \n3) delete \n4) sort \n5) findbyname \n6) findbybirth \n7) getExtremeGPA ");        
                     try
                     {
                         switch (Int32.Parse(Console.ReadLine()))
@@ -100,8 +134,21 @@ namespace lab_work_2
                                 update();
                                 break;
                             case 3:
+                                delete();
                                 break;
-                            default:
+                            case 4:
+                                sort();
+                                break;
+                            case 5:
+                                getByName();
+                                break;
+                            case 6:
+                                getByBirth();
+                                break;
+                            case 7:
+                                getExtremeGPA();
+                                break;
+                            default:    
                                 throw new ArgumentException();
                         }
                         break;
